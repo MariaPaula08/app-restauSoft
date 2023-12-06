@@ -1,0 +1,79 @@
+
+.titlePedidos{
+    font-size: 3em;
+    font-weight: bold;
+    color: #343a40;
+}
+.containerPedidos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+    margin-top: 2em;
+}
+.btnUpdate{
+    background-color: #343a40;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.4em;
+    box-shadow: 0 0 0 grey;
+    padding: 0 2em;
+    transition: all .7s;
+}
+.btnUpdate:hover{
+    background-color: white;
+    color: #343a40;
+    box-shadow: 0 0 4px grey;
+}
+.pedido{
+    background-color: rgb(235, 234, 232);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 5px grey;
+    display: flex;
+    flex-direction: column;
+}
+.pedido b{
+    color: tomato;
+}
+
+.pedido button{
+    background-color: #343a40;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.4em;
+    box-shadow: 0 0 0 grey;
+    transition: all .7s;
+}
+.pedido button:hover{
+    background-color: white;
+    color: #343a40;
+    box-shadow: 0 0 4px grey;
+}
+
+
+.facturas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2em;
+    margin-top: 3em;
+    justify-content: center;
+}
+.facturas h1{
+    font-size: 1em !important;
+}
+.facturas .factura{
+    font-size: 1.2em !important;
+    background-color: rgb(235, 234, 232);
+    width: fit-content;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 5px grey;
+    display: flex;
+    flex-direction: column;
+}

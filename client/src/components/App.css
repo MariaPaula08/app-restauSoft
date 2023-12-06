@@ -1,0 +1,33 @@
+body {
+	width: 100vw;
+	overflow-x: hidden;
+}
+
+.signup-container {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.8;
+}
+
+.signin-container {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.8;
+}
+
+.home-page {
+	height: 100vh;
+	background: white;
+}
+
+.banner-image {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 1;
+	height: 60%;
+	border-radius: 40px;
+	box-shadow: 10px 5px 5px black;
+}
