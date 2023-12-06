@@ -35,32 +35,32 @@ const Cart = ({ history }) => {
 	};
 
 	const handleCheckout = async () => {
-		if (!isAuthenticated()) return navigate('/')
+		if (!isAuthenticated()) return navigate('/');
 		try {
+			const cliente = isAuthenticated().username; // Obtener el nombre del cliente
+
 			const response = await fetch('http://localhost:5000/api/cart/checkout', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ cart }),
+				body: JSON.stringify({ cart, cliente }), // Agregar el nombre del cliente al cuerpo de la solicitud
 			});
 
 			if (!response.ok) {
 				throw new Error('Error al procesar el pedido');
 			}
 
-			console.log('Exito Al tomar el pedido')
-			dispatch(clearCart())
-			localStorage.removeItem('cart')
-			navigate('/')
-
-
+			console.log('Éxito al tomar el pedido');
+			dispatch(clearCart());
+			localStorage.removeItem('cart');
+			navigate('/');
 		} catch (error) {
 			console.error('Error al procesar el pedido:', error.message);
 		}
 	};
 
-	console.log(isAuthenticated())
+	// console.log(isAuthenticated().username)
 
 
 	return (

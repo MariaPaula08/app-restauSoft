@@ -4,11 +4,19 @@ const Cart = require('../models/Pedidos');
 
 const generarFactura = async (req, res) => {
     try {
-        const { products, total } = req.body;
+        const { cliente, products, total } = req.body;
+
+        // Modificar la estructura de cada producto para incluir productPrice
+        const productosConPrecio = products.map(product => {
+            return {
+                ...product,
+            };
+        });
 
         // Crear la factura con los detalles del pedido
         const factura = new Factura({
-            products,
+            cliente,
+            products: productosConPrecio,
             total,
         });
 
@@ -16,7 +24,7 @@ const generarFactura = async (req, res) => {
         const savedFactura = await factura.save();
 
         // Eliminar el pedido correspondiente
-        await Cart.findByIdAndDelete(req.params.id); // Ajusta según tu esquema de datos
+        await Cart.findByIdAndDelete(req.params.id);
 
         res.status(201).json({ message: 'Factura generada con éxito', factura: savedFactura });
     } catch (error) {

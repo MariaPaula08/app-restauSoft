@@ -37,6 +37,13 @@ const AdminActionBtns = () => {
 						<i className='fas fa-money-check-alt'> Ver Ordenes</i>
 					</button>
 				</div>
+				<div className='col-md-4 my-1'>
+					<button className='btn btn-outline-success btn-block'
+					onClick={() => navigate('/admin/facturas')}
+					>
+						<i className='fas fa-money-check-alt'> Facturas</i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

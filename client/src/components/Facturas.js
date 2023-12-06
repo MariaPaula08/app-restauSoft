@@ -3,9 +3,11 @@ import axios from 'axios';
 
 import '../styles/Pedidos.css';
 
-const Pedidos = () => {
+const Facturas = () => {
     const [pedidos, setPedidos] = useState([]);
+    const [facturas, setFacturas] = useState([]);
     const [searchPedido, setSearchPedido] = useState('');
+    const [searchFactura, setSearchFactura] = useState('');
 
     const fetchData = async () => {
         try {
@@ -14,6 +16,11 @@ const Pedidos = () => {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const getFacturas = async () => {
+        const response = await axios.get('http://localhost:5000/api/factura/getFacturas');
+        setFacturas(response.data.reverse());
     };
 
     const handlePagar = async (pedidoId) => {
@@ -30,6 +37,7 @@ const Pedidos = () => {
 
             setPedidos(pedidos.filter((pedido) => pedido._id !== pedidoId));
             fetchData();
+            getFacturas();
 
         } catch (error) {
             console.error('Error al generar la factura:', error.message);
@@ -40,51 +48,48 @@ const Pedidos = () => {
         pedido.cliente.toLowerCase().includes(searchPedido.toLowerCase())
     );
 
+    const filteredFacturas = facturas.filter((factura) =>
+        factura.cliente.toLowerCase().includes(searchFactura.toLowerCase())
+    );
+
     useEffect(() => {
         fetchData();
+        getFacturas();
     }, []);
 
     return (
         <div>
-            <h4 className='titlePedidos'>Pedidos:</h4>
-            <button className='btnUpdate' onClick={() => fetchData()}>Actualizar Pedidos</button>
-            <div className='search-container' style={{ margin: '1em 0' }}>
-                <label htmlFor='searchPedido'>Buscar Pedido:</label>
+            <h2 className='titlePedidos'>Facturas</h2>
+            <div className='search-container'>
+                <label htmlFor='searchFactura'>Buscar Factura:</label>
                 <input
                     type='text'
-                    id='searchPedido'
-                    value={searchPedido}
-                    onChange={(e) => setSearchPedido(e.target.value)}
+                    id='searchFactura'
+                    value={searchFactura}
+                    onChange={(e) => setSearchFactura(e.target.value)}
                 />
             </div>
-            <div className='containerPedidos'>
-                {filteredPedidos.map((pedido) => (
-                    <div className='pedido' key={pedido._id}>
-                        <h5><b>Pedido ID:</b> {pedido._id}</h5>
-                        <h5 style={{ textTransform: 'capitalize' }}><b>Cliente:</b> {pedido.cliente}</h5>
-                        <p><b>Total:</b> ${pedido.total.toLocaleString(
+            <div className='facturas'>
+                {filteredFacturas.map((factura) => (
+                    <div className='factura' key={factura._id}>
+                        <h1><b>Factura ID:</b> {factura._id}</h1>
+                        <h1><b>Fecha Pago:</b> {new Date(factura.createdAt).toLocaleString()}</h1>
+                        <h2 style={{ fontSize: '1em' }}><b>Cliente:</b> {factura.cliente}</h2>
+                        <h2><b>Pedido:</b></h2>
+                        <ul>
+                            {factura.products.map((product, index) => (
+                                <li key={index}>
+                                    {product.productName} - {product.count}x{product.productPrice}
+                                </li>
+                            ))}
+                        </ul>
+                        <h2><b>Total:</b> ${factura.total.toLocaleString(
                             'en-CO',
                             {
                                 style: 'currency',
                                 currency: 'COP',
                             }
-                        )}</p>
-                        <p><b>Fecha Pedido:</b> {new Date(pedido.createdAt).toLocaleString()}</p>
-                        <h6><b>Productos:</b></h6>
-                        <ul>
-                            {pedido.products.map((producto, index) => (
-                                <li key={index}>
-                                    {producto.count} x {producto.productName} - ${producto.productPrice.toLocaleString(
-                                        'en-CO',
-                                        {
-                                            style: 'currency',
-                                            currency: 'COP',
-                                        }
-                                    )} U
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={() => handlePagar(pedido._id)}>Pagar</button>
+                        )}</h2>
                     </div>
                 ))}
             </div>
@@ -92,4 +97,4 @@ const Pedidos = () => {
     );
 };
 
-export default Pedidos;
+export default Facturas;

@@ -21,6 +21,10 @@ const productoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    productPrice: {
+        type: Number,  // Agregar este campo
+        required: true,
+    },
     // Otros campos según sea necesario
 });
 
@@ -30,6 +34,7 @@ const facturaSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    cliente: String,
     createdAt: {
         type: Date,
         default: Date.now,

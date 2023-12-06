@@ -18,6 +18,7 @@ import AdminRoute from './AdminRoute';
 import UserRoute from './UserRoute';
 import NotFound from './NotFound';
 import Pedidos from './Pedidos';
+import Facturas from './Facturas';
 
 const App = () => {
 	return (
@@ -64,6 +65,11 @@ const App = () => {
 							exact
 							path='/admin/pedidos'
 							element={<Pedidos />}
+						/>
+						<Route
+							exact
+							path='/admin/facturas'
+							element={<Facturas />}
 						/>
 					</Route>
 

@@ -13,6 +13,7 @@ const cartSchema = new mongoose.Schema({
             updatedAt: Date,
         }
     ],
+    cliente: String,
     total: {
         type: Number,
         required: true,
