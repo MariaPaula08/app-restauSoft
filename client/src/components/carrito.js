@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { ADD_TO_CART } from '../redux/constants/cartConstants';
 import { deleteFromCart, clearCart } from '../redux/actions/cartActions';
 import { isAuthenticated } from '../helpers/auth';
+
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = ({ history }) => {
 	const navigate = useNavigate();
@@ -15,6 +18,14 @@ const Cart = ({ history }) => {
 		navigate(-1);
 	};
 
+	const notify = () => {
+  
+		toast.success("Pedido Exitoso !", {
+		  position: toast.POSITION.TOP
+		});
+  
+	
+	  };
 	const handleQtyChange = (e, product) => {
 		const cart = localStorage.getItem('cart')
 			? JSON.parse(localStorage.getItem('cart'))
@@ -36,29 +47,34 @@ const Cart = ({ history }) => {
 
 	const handleCheckout = async () => {
 		if (!isAuthenticated()) return navigate('/');
+	  
 		try {
-			const cliente = isAuthenticated().username; // Obtener el nombre del cliente
-
-			const response = await fetch('http://localhost:5000/api/cart/checkout', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ cart, cliente }), // Agregar el nombre del cliente al cuerpo de la solicitud
-			});
-
-			if (!response.ok) {
-				throw new Error('Error al procesar el pedido');
-			}
-
-			console.log('Éxito al tomar el pedido');
-			dispatch(clearCart());
-			localStorage.removeItem('cart');
+		  const cliente = isAuthenticated().username;
+	  
+		  const response = await fetch('http://localhost:5000/api/cart/checkout', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ cart, cliente }),
+		  });
+	  
+		  console.log('After fetch request');
+	  
+		  if (!response.ok) {
+			throw new Error('Error al procesar el pedido');
+		  }
+	  
+		  dispatch(clearCart());
+		  localStorage.removeItem('cart');
+		  setTimeout(() => {
 			navigate('/');
+		  }, 3000);
 		} catch (error) {
-			console.error('Error al procesar el pedido:', error.message);
+		  console.error('Error al procesar el pedido:', error.message);
 		}
-	};
+	  };
+	  
 
 	// console.log(isAuthenticated().username)
 
@@ -182,10 +198,11 @@ const Cart = ({ history }) => {
 							</p>
 							<button
 								className='btn btn-dark btn-large btn-block mb-5 py-2'
-								onClick={handleCheckout}
+								onClick={handleCheckout} 
 							>
 								Generar Pedido
 							</button>
+          					<ToastContainer />
 						</div>
 					</div>
 				</>

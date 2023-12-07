@@ -49,7 +49,7 @@ const Home = () => {
 				className='banner-image'
 				style={{
 					backgroundImage: `url(${
-						process.env.PUBLIC_URL + '/images/banner.jpg'
+						process.env.PUBLIC_URL + '/images/Panorámica-Restaurante-1.jpg'
 					})`,
 				}}
 			></div>

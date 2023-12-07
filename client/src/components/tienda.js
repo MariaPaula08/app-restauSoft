@@ -62,7 +62,7 @@ const Shop = () => {
 	return (
 		<section className='shop-page m-4'>
 			<div className='jumbotron'>
-				<h1 className='display-4'>Tienda</h1>
+				<h1 className='display-4'>Tienda RestauSoft</h1>
 			</div>
 			<div className='row'>
 				<div className='col-md-3 border-right'>
