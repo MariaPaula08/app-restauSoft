@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../redux/actions/productActions';
 import { addToCart } from '../redux/actions/cartActions';
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 const Card = ({ product, adminPage = false, homePage = false }) => {
 	const dispatch = useDispatch();
 
@@ -14,6 +17,7 @@ const Card = ({ product, adminPage = false, homePage = false }) => {
 
 	return (
 		<div className='col-md-4 my-3'>
+			<ToastContainer/>
 			<div className='card h-100'>
 				<a href='#!'>
 					<img
@@ -60,7 +64,7 @@ const Card = ({ product, adminPage = false, homePage = false }) => {
 								}
 							>
 								<i className='far fa-trash-alt pr-1'></i>
-							Eliminar
+								Eliminar
 							</button>
 						</>
 					)}

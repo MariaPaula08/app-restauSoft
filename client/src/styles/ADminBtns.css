@@ -1,0 +1,19 @@
+.containerBtns{
+
+}
+
+@media (max-width: 768px){
+    .responsive{
+        justify-content: center;
+    }
+    .containerP{
+        display: flex;
+        justify-content: center;
+        transform: translateX(-20%);
+    }
+    .containerBtns {
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}

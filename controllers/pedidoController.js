@@ -30,7 +30,6 @@ const checkout = async (req, res) => {
     }
 };
 
-
 const getPedidos = async (req, res) => {
     try {
 
@@ -43,7 +42,29 @@ const getPedidos = async (req, res) => {
     }
 }
 
+const deletePedido = async (req, res) => {
+    try {
+        const pedidoId = req.params.pedidoId; // Suponiendo que el id del pedido está en los parámetros de la ruta
+
+        // Verificar si el pedido existe
+        const pedidoExistente = await Cart.findById(pedidoId);
+
+        if (!pedidoExistente) {
+            return res.status(404).json({ error: 'Pedido no encontrado' });
+        }
+
+        // Eliminar el pedido de la base de datos
+        await Cart.findByIdAndRemove(pedidoId);
+
+        res.status(200).json({ message: 'Pedido eliminado con éxito' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};
+
 module.exports = {
     checkout,
-    getPedidos
+    getPedidos,
+    deletePedido
 };

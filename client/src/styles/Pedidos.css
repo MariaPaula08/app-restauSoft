@@ -81,3 +81,25 @@
     display: flex;
     flex-direction: column;
 }
+
+.btnPagar{
+    background-color: #343a40;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 1.2em;
+    box-shadow: 0 0 0 grey;
+    transition: all .7s;
+}
+
+.btnPagar:hover{
+    background-color: white;
+    color: #343a40;
+    box-shadow: 0 0 4px grey;
+}
+.btnsActions{
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+}

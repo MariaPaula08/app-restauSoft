@@ -4,11 +4,16 @@ import {
 	CLEAR_CART,
 } from '../constants/cartConstants';
 
+import { toast } from 'react-toastify';
+
 export const addToCart = product => async dispatch => {
 	// if cart already exists in local storage, use it, otherwise set to empty array
 	const cart = localStorage.getItem('cart')
 		? JSON.parse(localStorage.getItem('cart'))
 		: [];
+	toast.success("Añadido al Carrito", {
+		position: toast.POSITION.TOP_CENTER
+	});
 
 	// check if duplicates
 	const duplicates = cart.filter(cartItem => cartItem._id === product._id);
@@ -43,6 +48,10 @@ export const deleteFromCart = product => async dispatch => {
 	const updatedCart = cart.filter(cartItem => cartItem._id !== product._id);
 
 	localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+	toast.success("Elemento eliminado", {
+		position: toast.POSITION.TOP
+	});
 
 	dispatch({
 		type: DELETE_FROM_CART,

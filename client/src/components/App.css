@@ -30,3 +30,65 @@ body {
 	height: 60%;
 	box-shadow: 10px 5px 5px black;
 }
+
+/* Estilos personalizados para la tabla y paginador */
+/* Estilos personalizados para la tabla y paginador */
+
+.custom-datatable {
+    margin: 1em 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.p-datatable-custom {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	margin-top: 1em;
+}
+
+.p-datatable-custom .p-datatable-thead > tr > th {
+    background-color: #f2f2f2;
+    border: none;
+    color: #333;
+    font-weight: 600;
+    text-align: left;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.p-datatable-custom .p-datatable-tbody > tr > td {
+    border: none;
+    color: #555;
+}
+
+.p-datatable-custom .p-datatable-tbody > tr:hover {
+    background-color: #f5f5f5;
+}
+
+.p-datatable-custom .p-paginator {
+    margin-top: 1em;
+}
+
+
+.p-paginator-custom .p-paginator-element {
+    color: #333;
+}
+
+.p-paginator-custom .p-paginator-pages {
+    display: flex;
+    align-items: center;
+}
+
+.p-paginator-custom .p-dropdown {
+    width: auto;
+    margin-left: auto;
+}
+.p-datatable-custom .p-datatable-thead > tr > th,
+.p-datatable-custom .p-datatable-tbody > tr > td {
+    border: 1px solid #ddd; /* Añadir líneas a las celdas de la tabla */
+}
+
+.p-datatable-custom .p-datatable-tbody > tr > td:last-child,
+.p-datatable-custom .p-datatable-thead > tr > th:last-child {
+    border-right: none; /* No añadir línea derecha a la última celda de la tabla */
+}
