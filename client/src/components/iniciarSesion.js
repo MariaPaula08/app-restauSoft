@@ -96,7 +96,7 @@ const Signin = () => {
 	const showSigninForm = () => (
 		<form className='signup-form' onSubmit={handleSubmit} noValidate>
 			{/* email */}
-			<div className='col-md-5 mx-auto align-self-center'><img src="logoleon.png"  width={"200px"}  ></img></div>
+			<div className='col-md-5 mx-auto align-self-center'><img src="LogoLeon.png"  width={"200px"}  ></img></div>
 			<div className='form-group input-group'>
 				<div className='input-group-prepend'>
 					<span className='input-group-text'>
