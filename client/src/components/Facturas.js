@@ -15,7 +15,7 @@ const Facturas = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/cart/getPedidos');
+            const response = await axios.get(`${import.meta.env.REACT_APP_SERVER_URL}/api/cart/getPedidos`);
             setPedidos(response.data.reverse());
         } catch (error) {
             console.log(error);
@@ -23,7 +23,7 @@ const Facturas = () => {
     };
 
     const getFacturas = async () => {
-        const response = await axios.get('http://localhost:5000/api/factura/getFacturas');
+        const response = await axios.get(`${import.meta.env.REACT_APP_SERVER_URL}/api/factura/getFacturas`);
         setFacturas(response.data.reverse());
     };
 

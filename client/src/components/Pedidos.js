@@ -26,7 +26,7 @@ const Pedidos = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/cart/getPedidos');
+            const response = await axios.get(`${import.meta.env.REACT_APP_SERVER_URL}/api/cart/getPedidos`);
             setPedidos(response.data.reverse());
         } catch (error) {
             console.log(error);
@@ -38,7 +38,7 @@ const Pedidos = () => {
 
         if (confirmPayment) {
             try {
-                const response = await axios.post(`http://localhost:5000/api/factura/generarFactura/${pedidoId}`, {
+                const response = await axios.post(`${import.meta.env.REACT_APP_SERVER_URL}/api/factura/generarFactura/${pedidoId}`, {
                     cliente: clientePedido,
                     products: pedidos.find((pedido) => pedido._id === pedidoId).products,
                     total: pedidos.find((pedido) => pedido._id === pedidoId).total,
@@ -69,7 +69,7 @@ const Pedidos = () => {
 
         if (confirmDelete) {
             try {
-                await axios.delete(`http://localhost:5000/api/cart/deletePedido/${pedidoId}`);
+                await axios.delete(`${import.meta.env.REACT_APP_SERVER_URL}/api/cart/deletePedido/${pedidoId}`);
                 setPedidos(pedidos.filter((pedido) => pedido._id !== pedidoId));
 
                 // Mostrar notificación de éxito

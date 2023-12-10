@@ -51,7 +51,7 @@ const Cart = ({ history }) => {
 		try {
 			const cliente = isAuthenticated().username;
 
-			const response = await fetch('http://localhost:5000/api/cart/checkout', {
+			const response = await fetch(`${import.meta.env.REACT_APP_SERVER_URL}/api/cart/checkout`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

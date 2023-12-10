@@ -16,7 +16,7 @@ const AdminOrdenes = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await axios.get('http://localhost:5000/api/cart/getPedidos');
+			const response = await axios.get(`${import.meta.env.REACT_APP_SERVER_URL}/api/cart/getPedidos`);
 			console.log('Exito:', response.data);
 			setPedidos(response.data);
 		} catch (error) {
