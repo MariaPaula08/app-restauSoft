@@ -109,7 +109,7 @@ const Signup = () => {
 	const showSignupForm = () => (
 		<form className='signup-form' onSubmit={handleSubmit} noValidate>
 			{/* username */}
-			<div className='col-md-5 mx-auto align-self-center'><img src="LogoLeon.png"  width={"150px"}  ></img></div>
+			<div className='col-md-5 mx-auto' style={{textAlign: "center"}}><img src="LogoLeon.png"  width={"150px"} alt='Logo aplicativo' ></img></div>
 			<div className='form-group input-group'>
 				<div className='input-group-prepend'>
 					<span className='input-group-text'>
